@@ -1,0 +1,215 @@
+# This is a YAML file that defines the data contract for a mock dataset.
+# It includes metadata about the dataset, field definitions, and rules for data validation.
+
+dataset_name: mock_data
+owner: data-team@owner.com
+refresh_frequency: daily
+description: This is a mock dataset for testing purposes.
+fields:
+  - name: id
+    type: integer
+    description: Unique identifier for each record.
+    nullable: false
+    pii: false
+
+  - name: first_name
+    type: string
+    description: Name of the entity.
+    nullable: false
+    pii: true # PII: true indicates that this field contains personally identifiable information.
+
+  - name: last_name
+    type: string
+    description: Last name of the entity.
+    nullable: false
+    pii: true # PII: true indicates that this field contains personally identifiable information.
+
+  - name: email
+    type: string
+    description: Email address of the entity.
+    nullable: false
+    pii: true # PII: true indicates that this field contains personally identifiable information.
+
+    name: gender
+    type: string
+    description: Gender of the entity.
+    nullable: false
+    pii: true # PII: true indicates that this field contains personally identifiable information.
+
+  - name: ip_address
+    type: string
+    description: IP address of the entity.
+    nullable: false
+    pii: true # PII: true indicates that this field contains personally identifiable information.
+
+  - name: weight
+    type: float
+    description: Weight of the entity.
+    nullable: false
+    pii: false
+
+  - name: age
+    type: integer
+    description: Age of the entity.
+    nullable: false
+    pii: false
+
+  - name: salary
+    type: float
+    description: Salary of the entity.
+    nullable: true
+    pii: false
+
+  - name: country
+    type: string
+    description: Country of the entity.
+    nullable: false
+    pii: false
+
+  - name: monthly_savings
+    type: float
+    description: Monthly savings of the entity.
+    nullable: true
+    pii: false
+
+  - name: marital_status
+    type: string
+    description: Marital status of the entity.
+    nullable: false
+    pii: false
+
+  - name: role
+    type: string
+    description: Role of the entity in the organization.
+    nullable: true
+    pii: false
+
+  - name: height
+    type: float
+    description: Height of the entity.
+    nullable: false
+    pii: false
+
+  - name: education_level
+    type: string
+    description: Education level of the entity.
+    nullable: true
+    pii: false
+
+  - name: years_experience
+    type: integer
+    description: Years of experience of the entity.
+    nullable: true
+    min_value: 0
+    max_value: 50
+    pii: false
+
+  - name: created_at
+    type: datetime
+    description: Timestamp when the record was created.
+    nullable: false
+    pii: false
+
+  - name: updated_at
+    type: datetime
+    description: Timestamp when the record was last updated.
+    nullable: false
+    pii: false
+
+
+rules:
+
+  - name: schema_validation
+    description: Ensure that the dataset follows the defined schema.
+    severity: high
+    severity_point: 5
+    type: schema_check
+  
+  - name: valid_age_range
+    description: Ensure that the age field contains valid values.
+    severity: medium
+    severity_point: 3
+    type: range_check
+    fields:
+      - age
+    min_value: 0
+    max_value: 120
+
+  - name: valid_weight_range
+    description: Ensure that the weight field contains valid values.
+    severity: medium
+    severity_point: 3
+    type: range_check
+    fields:
+      - weight
+    min_value: 0
+    max_value: 500
+
+  - name: valid_height_range 
+    description: Ensure that the height field contains valid values.
+    severity: medium
+    severity_point: 3
+    type: range_check
+    fields:
+      - height
+    min_value: 0
+    max_value: 300
+
+  - name: valid_email_format
+    description: Ensure that the email field contains valid email addresses.
+    severity: medium
+    severity_point: 3
+    type: regex_check
+    fields:
+      - email
+    regex: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+  
+  - name: valid_ip_format
+    description: Ensure that the IP address field contains valid IP addresses.
+    severity: low
+    severity_point: 1
+    type: regex_check
+    fields:
+      - ip_address
+    regex: '^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
+
+  - name: no_null_values
+    description: Ensure that there are no null values in the dataset.
+    severity: high
+    severity_point: 5
+    type: null_check
+    fields:
+      - id
+      - first_name
+      - last_name
+      - email
+      - gender
+      - ip_address
+      - weight
+      - age
+      - country
+      - marital_status
+      - height
+      - created_at
+      - updated_at
+  
+alerts:
+
+  - name: completness_check
+    description: Ensure that no more than 5% of the records should be missing values in nullable fields.
+    severity: high
+    type: completeness_check
+    threshold: 0.05
+    fields:
+      - salary
+      - monthly_savings
+      - role
+      - education_level
+      - years_experience
+
+  - name: tags
+    description: Ensure that the dataset is tagged correctly.
+    severity: high
+    type: tag_check
+    tags:
+      - pii
