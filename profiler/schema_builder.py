@@ -1,3 +1,5 @@
+""" Rule Engine for Data Validation """
+
 import pandas as pd
 from typing import Dict, List
 import pandera as pa
@@ -6,7 +8,7 @@ from datetime import datetime
 
     
 type_mapping = {
-          'int': pa.Int
+          'integer': pa.Int
         , 'float': pa.Float
         , 'string': pa.String
         , 'bool': pa.Bool
@@ -74,7 +76,7 @@ def validate_schema(df: pd.DataFrame, contract: Dict):
     
     try:
         schema.validate(df, lazy=True)
-        return []  # ✅ Schema passed
+        return "Schema validation passed"  # Schema passed
     
     except pa.errors.SchemaErrors as e:
         violations = []
