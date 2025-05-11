@@ -1,3 +1,5 @@
+import datetime
+
 def get_contract_alerts(contract: dict):
     """
     Extract alerts from the contract and return them as a list of dictionaries.
@@ -55,6 +57,7 @@ def validate_alerts(df,contract, relevant_alerts):
                         "column": field,
                         "threshold": threshold,
                         "null_ratio": null_ratio,
+                        "timestamp": datetime.datetime.now()
                     })              
                 
         
@@ -76,6 +79,7 @@ def validate_alerts(df,contract, relevant_alerts):
                                 "severity": severity,
                                 "column": field,
                                 "tags": tags,
+                                "timestamp": datetime.datetime.now()
                     })
             
 

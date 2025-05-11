@@ -1,3 +1,5 @@
+import datetime
+
 """ Rule Engine for Data Validation """
 
 
@@ -37,7 +39,7 @@ def validate_rules(df, relevant_rules):
     for rule in relevant_rules:
         rule_type = rule.get("type")
         severity = rule.get("severity", "high")
-        severity_points = rule.get("severity_points", 5)
+        severity_points = rule.get("severity_point", 5)
         fields = rule.get("fields", [])
         
 
@@ -59,7 +61,9 @@ def validate_rules(df, relevant_rules):
                         "severity_points": severity_points,
                         "min_value": min_value,
                         "max_value": max_value,
-                        "actual_value": df[field].min()
+                        "actual_value": df[field].min(),
+                        "error": "min_value",
+                        "timestamp": datetime.datetime.now()
                     })
                     
                 # Check if the values are within the specified range
@@ -72,8 +76,10 @@ def validate_rules(df, relevant_rules):
                         "severity_points": severity_points,
                         "min_value": min_value,
                         "max_value": max_value,
-                        "actual_value": df[field].max()
-                    })
+                        "actual_value": df[field].max(),
+                        "error": "max_value",
+                        "timestamp": datetime.datetime.now()
+                        })
         elif rule_type == "regex_check":
             regex = rule.get("regex")
             
@@ -87,7 +93,9 @@ def validate_rules(df, relevant_rules):
                         "severity": severity,
                         "severity_points": severity_points,
                         "regex": regex,
-                        "actual_value": df[field][~df[field].str.match(regex)]
+                        "actual_value": df[field][~df[field].str.match(regex)],
+                        "error": "regex_mismatch",
+                        "timestamp": datetime.datetime.now()
                     })
                     
         elif rule_type == "null_check":
@@ -100,7 +108,9 @@ def validate_rules(df, relevant_rules):
                         "rule": rule_type,
                         "severity": severity,
                         "severity_points": severity_points,
-                        "actual_value": df[field][df[field].isnull()]
+                        "actual_value": df[field][df[field].isnull()],
+                        "error": "null_value",
+                        "timestamp": datetime.datetime.now()
                     })
                     
     return violations

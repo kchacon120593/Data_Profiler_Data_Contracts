@@ -1,0 +1,16 @@
+
+    <html>
+    <head><meta charset='utf-8'><title>Data Quality Report</title></head>
+    <body>
+    <h1>🧪 Data Quality Report</h1>
+    <p><strong>Generated:</strong> 2025-05-11T21:22:45.076801</p>
+    <p><strong>Total Issues:</strong> 4</p>
+    <p><strong>Threshold:</strong> 5</p>
+    <p><strong>Severity Points:</strong> 12</p>
+    <p><strong>Status:</strong> fail</p>
+    <hr>
+    <h3>❌ range_check — age</h3><ul><li><strong>Error:</strong> max_value</li><li><strong>Severity:</strong> medium<li><strong>Severity points:</strong> 3</li><li><strong>Actual Value:</strong> 200</li><li><strong>Timestamp:</strong> 2025-05-11 21:22:44.981983</li></ul><hr><h3>❌ range_check — height</h3><ul><li><strong>Error:</strong> max_value</li><li><strong>Severity:</strong> medium<li><strong>Severity points:</strong> 3</li><li><strong>Actual Value:</strong> 11.0</li><li><strong>Timestamp:</strong> 2025-05-11 21:22:44.983019</li></ul><hr><h3>❌ regex_check — ip_address</h3><ul><li><strong>Error:</strong> regex_mismatch</li><li><strong>Severity:</strong> low<li><strong>Severity points:</strong> 1</li><li><strong>Actual Value:</strong> 2    252/30.214-249
+Name: ip_address, dtype: object</li><li><strong>Timestamp:</strong> 2025-05-11 21:22:44.989026</li></ul><hr><h3>❌ null_check — email</h3><ul><li><strong>Error:</strong> null_value</li><li><strong>Severity:</strong> high<li><strong>Severity points:</strong> 5</li><li><strong>Actual Value:</strong> 4    NaN
+5    NaN
+6    NaN
+Name: email, dtype: object</li><li><strong>Timestamp:</strong> 2025-05-11 21:22:44.990025</li></ul><hr><h3>❗️ completeness_check — education_level</h3><ul><li><strong>Alert:</strong> completeness_check</li><li><strong>Severity:</strong> high<li><strong>Threshold:</strong> 0.05</li><li><strong>Timestamp:</strong> 2025-05-11 21:22:45.020252</li></ul><hr><h3>❗️ tag_check — id</h3><ul><li><strong>Alert:</strong> tag_check</li><li><strong>Severity:</strong> high<li><strong>Tags:</strong> ['pii']</li><li><strong>Timestamp:</strong> 2025-05-11 21:22:45.020252</li></ul><hr></body></html>
