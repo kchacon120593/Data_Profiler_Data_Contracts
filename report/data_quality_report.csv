@@ -1,9 +1,9 @@
 field,rule,severity,severity_points,min_value,max_value,actual_value,error,timestamp,regex
-age,range_check,medium,3,0.0,120.0,200,max_value,2025-05-11 21:22:44.981983,
-height,range_check,medium,3,0.0,9.0,11.0,max_value,2025-05-11 21:22:44.983019,
+age,range_check,medium,3,0.0,120.0,200,max_value,2025-05-19 09:20:26.481709,
+height,range_check,medium,3,0.0,9.0,11.0,max_value,2025-05-19 09:20:26.482710,
 ip_address,regex_check,low,1,,,"2    252/30.214-249
-Name: ip_address, dtype: object",regex_mismatch,2025-05-11 21:22:44.989026,^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
+Name: ip_address, dtype: object",regex_mismatch,2025-05-19 09:20:26.486709,^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
 email,null_check,high,5,,,"4    NaN
 5    NaN
 6    NaN
-Name: email, dtype: object",null_value,2025-05-11 21:22:44.990025,
+Name: email, dtype: object",null_value,2025-05-19 09:20:26.486709,
